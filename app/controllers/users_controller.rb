@@ -8,10 +8,6 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = user.new(book_params)
-    @user.user_id = current_user.id
-    @user.save
-    redirect_to user_session_path
   end
 
   def show
@@ -20,5 +16,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    @user.user_id = current_user.id
+    @user.update
+    redirect_to user_session_path
   end
 end
