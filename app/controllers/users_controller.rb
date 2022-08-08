@@ -19,6 +19,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.user_id = current_user.id
     @user.update
-    redirect_to user_session_path
+    redirect_to user_path
+  end
+  
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :profile_image)
   end
 end
