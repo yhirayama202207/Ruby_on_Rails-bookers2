@@ -8,10 +8,13 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = book.new(book_params)
+    @book = Book.new(book_params)
     @book.user_id = current_user.id
-    @book.save
-    redirect_to books_show_path
+    if @book.save
+    redirect_to books_show_path(@book.id)
+    else
+    render :new
+    end
   end
 
   def show
