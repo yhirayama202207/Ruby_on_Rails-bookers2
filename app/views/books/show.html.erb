@@ -17,8 +17,9 @@
           <tbody>
             <tr>
               <td>
-                <%= link_to user_path(current_user.id) do %>
-                  <%= image_tag @user.get_profile_image(100,100) %>
+                <%= link_to user_path(@book.user) do %>
+                  <%= image_tag @user.get_profile_image(100,100) %></br>
+                  <%= @user.name %>
                 <% end %>
               </td>
               <td>
@@ -31,6 +32,8 @@
               <td>
                 <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success" %>
               </td>
+                <% end %>
+                <% if @book.user == current_user %>
               <td>
                 <%= link_to "Delete", book_path(@book.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
               </td>
